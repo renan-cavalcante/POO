@@ -22,7 +22,7 @@ public class Main {
 				String s = scan.next();
 				continuar = s.toLowerCase().equals("s") ? true : false; System.out.println(s);
 			} catch (IllegalArgumentException e) {
-				System.out.println("O raio não pode ser negativo");
+				System.out.println(e.getMessage());
 				continuar = true;
 			} catch (InputMismatchException e) {
 				System.out.println("O valor do raio deve ser um numero");
