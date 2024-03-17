@@ -1,0 +1,42 @@
+package model;
+
+public class Produto {
+
+	private int codigo;
+	private double valor;
+	private String descricao;
+	
+	public Produto() {
+	}
+
+	public int getCodigo() {
+		return codigo;
+	}
+
+	public void setCodigo(int codigo) {
+		this.codigo = codigo;
+	}
+
+	public double getValor() {
+		return valor;
+	}
+
+	public void setValor(double valor) {
+		this.valor = valor;
+	}
+
+	public String getDescricao() {
+		return descricao;
+	}
+
+	public void setDescricao(String descricao) {
+		this.descricao = descricao;
+	}
+	
+	@Override
+	public String toString() {
+		String p = String.format("%d  %.2f %-30s", codigo, valor, descricao);
+		return p;
+	}
+	
+}
