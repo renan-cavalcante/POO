@@ -1,6 +1,8 @@
 package model;
 
+import java.time.DateTimeException;
 import java.time.LocalDate;
+import java.time.temporal.ChronoUnit;
 
 public class Pessoa {
 	
@@ -15,10 +17,17 @@ public class Pessoa {
 		this.nome = nome;
 	}
 	public LocalDate getDataNascimento() {
+		
 		return dataNascimento;
 	}
-	public void setDataNascimento(LocalDate dataNascimento) {
-		this.dataNascimento = dataNascimento;
+	public void setDataNascimento(int dia, int mes, int ano) throws DateTimeException, Exception {
+		
+		LocalDate data = LocalDate.of(ano,mes,dia);
+
+		if(LocalDate.now().isBefore(data)) throw new Exception("A data de nascimento não pode ser maior que a data atual");
+		if( LocalDate.now().getYear() - data.getYear() > 150) throw new Exception("Uma pessoa não pode ter mais que 150 anos");
+		
+		this.dataNascimento = data;
 	}
 	public String getProfissao() {
 		return profissao;
@@ -27,7 +36,10 @@ public class Pessoa {
 		this.profissao = profissao;
 	}
 	
-	
+	public Long getIdade() {
+		
+		return Math.abs(ChronoUnit.YEARS.between(LocalDate.now(), dataNascimento));
+	}
 	
 
 }
